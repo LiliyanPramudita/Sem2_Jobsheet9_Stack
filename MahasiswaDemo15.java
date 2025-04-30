@@ -12,6 +12,8 @@ public class MahasiswaDemo15 {
             System.out.println("2. Menilai Tugas");
             System.out.println("3. Melihat Tugas Teratas");
             System.out.println("4. Melihat Daftar Tugas");
+            System.out.println("5. Melihat Tugas Terbawah");
+            System.out.println("6. Melihat Jumlah Tugas");
             System.out.print("Pilih: ");
             pilih = scan.nextInt();
             scan.nextLine(); // membersihkan newline
@@ -28,16 +30,20 @@ public class MahasiswaDemo15 {
                     stack.push(mhs);
                     System.out.printf("Tugas %s berhasil dikumpulkan\n", mhs.nama);
                     break;
-                case 2:
-                    Mahasiswa15 dinilai = stack.pop();
-                    if (dinilai != null) {
-                        System.out.println("Menilai tugas dari " + dinilai.nama);
-                        System.out.print("Masukkan nilai (0-100): ");
-                        int nilai = scan.nextInt();
-                        dinilai.tugasDinilai(nilai);
-                        System.out.printf("Nilai Tugas %s adalah %d\n", dinilai.nama, nilai);
-                    }
-                    break;
+case 2:
+    Mahasiswa15 dinilai = stack.pop();
+    if (dinilai != null) {
+        System.out.println("Menilai tugas dari " + dinilai.nama);
+        System.out.print("Masukkan nilai (0-100): ");
+        int nilai = scan.nextInt();
+        dinilai.tugasDinilai(nilai);
+        System.out.printf("Nilai Tugas %s adalah %d\n", dinilai.nama, nilai);
+        
+        // Konversi ke biner
+        stack.konversiDesimalKeBiner(nilai);
+    }
+    break;
+
                 case 3:
                     Mahasiswa15 lihat = stack.peek();
                     if (lihat != null) {
@@ -49,6 +55,16 @@ public class MahasiswaDemo15 {
                     System.out.println("Nama\tNIM\tKelas");
                     stack.print();
                     break;
+                case 5:
+                    Mahasiswa15 bawah = stack.lihatTugasTerbawah();
+                    if (bawah != null) {
+                        System.out.println("Tugas pertama dikumpulkan oleh " + bawah.nama);
+                    }
+                    break;
+                case 6:
+                    System.out.println("Jumlah tugas yang telah dikumpulkan: " + stack.jumlahTugas());
+                    break;
+                    
                 default:
                     System.out.println("Pilihan tidak valid.");
             }

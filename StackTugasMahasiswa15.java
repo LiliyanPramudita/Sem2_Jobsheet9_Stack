@@ -49,9 +49,35 @@ public class StackTugasMahasiswa15 {
         }
     }
     public void print(){
-        for(int i = 0; i<= top; i++){
+        for(int i = top; i >= 0; i--){
             System.out.println(stack[i].nama+ "\t" + stack[i].nim + "\t" + stack[i].kelas);
         }
-        System.out.println("");
     }
+    public Mahasiswa15 lihatTugasTerbawah(){
+        if (!isEmpty()){
+            return stack[0];
+        } else {
+            System.out.println("Stack kosong!");
+            return null;
+        }
+    }
+    public int jumlahTugas(){
+        return top + 1;
+    }
+    public void konversiDesimalKeBiner(int kode) {
+        StackKonversi15 biner = new StackKonversi15(32);
+    
+        while (kode != 0) {
+            int sisa = kode % 2;
+            biner.push(sisa);
+            kode = kode / 2;
+        }
+    
+        System.out.print("Nilai dalam biner: ");
+        while (!biner.isEmpty()) {
+            System.out.print(biner.pop());
+        }
+        System.out.println();
+    }
+    
 }
